@@ -1,3 +1,4 @@
 {
-  "eslint.codeActionsOnSave": true
+  "eslint.codeActionsOnSave": true,
+  "prettier.eslintIntegration": true
 }
