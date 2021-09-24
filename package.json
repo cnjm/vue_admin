@@ -1,15 +1,17 @@
 {
-  "name": "vue_cnjm_admin",
+  "name": "cnjm_admin",
   "version": "0.0.0",
   "scripts": {
     "clean": "rimraf node_modules",
     "bootstrap:yarn": "yarn install",
     "dev": "vite",
+    "build:stag": "vue-tsc --noEmit && vite build --mode staging",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix"
   },
   "dependencies": {
+    "axios": "^0.21.4",
     "vue": "^3.2.13"
   },
   "devDependencies": {
