@@ -14,7 +14,7 @@ export const runBuild = async () => {
       runBuildConfig()
     }
 
-    console.log(`✨ ${chalk.cyan(`[${pkg.name}]`)}` + ' - build successfully!')
+    console.log(`✨ ${chalk.cyan(`[${pkg.name}]`)}` + ` - ${chalk.green(`build successfully!`)}`)
   } catch (error) {
     console.log(chalk.red('vite build error:\n' + error))
     process.exit(1)

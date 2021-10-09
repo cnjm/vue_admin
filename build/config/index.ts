@@ -9,3 +9,5 @@ export const __APP_INFO__ = {
 export const OUTPUT_DIR = 'dist'
 
 export const GLOB_CONFIG_FILE_NAME = '_app.config.js'
+
+export const ENV_ROOT = process.cwd() + '\\env'

@@ -1,20 +1,18 @@
 import { defineConfig, loadEnv } from 'vite'
-import vue from '@vitejs/plugin-vue'
 import { getProxy } from './build/vite/proxy'
-import { __APP_INFO__, OUTPUT_DIR } from './build/config'
+import { __APP_INFO__, OUTPUT_DIR, ENV_ROOT } from './build/config'
 import { wrapperEnv, pathResolve } from './build/utils'
+import { createVitePlugins } from './build/vite/plugin'
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ command, mode }) => {
-  const root = process.cwd() + '\\env'
-  const env = loadEnv(mode, root)
+  const env = loadEnv(mode, ENV_ROOT)
   const viteEnv = wrapperEnv(env)
   const { VITE_APP_PORT, VITE_APP_PUBLIC_PATH, VITE_APP_PROXY, VITE_APP_DROP_CONSOLE } = viteEnv
-  const _IS_BUILD = command === 'build'
 
   return {
     base: VITE_APP_PUBLIC_PATH,
-    root,
+    // root,
     envDir: 'env',
     resolve: {
       alias: [
@@ -43,6 +41,7 @@ export default defineConfig(async ({ command, mode }) => {
       target: 'es2015',
       outDir: OUTPUT_DIR,
       terserOptions: {
+        // https://terser.org/docs/api-reference#minify-options
         compress: {
           keep_infinity: true,
           drop_console: VITE_APP_DROP_CONSOLE
@@ -55,6 +54,8 @@ export default defineConfig(async ({ command, mode }) => {
       __INTLIFY_PROD_DEVTOOLS__: false,
       __APP_INFO__: JSON.stringify(__APP_INFO__)
     },
-    plugins: [vue()]
+    // plugins: [vue()]
+    // https://github.com/vitejs/awesome-vite#plugins
+    plugins: createVitePlugins(viteEnv, command === 'build')
   }
 })

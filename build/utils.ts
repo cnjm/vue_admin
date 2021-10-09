@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { resolve } from 'path'
 import dotenv from 'dotenv'
+import { ENV_ROOT } from './config'
 
 export function isDevFn(mode: string): boolean {
   return mode === 'development'
@@ -69,7 +70,7 @@ export function getEnvConfig(match = 'VITE_GLOB_', confFiles = getConfFiles()) {
   let envConfig = {}
   confFiles.forEach((item) => {
     try {
-      const env = dotenv.parse(fs.readFileSync(resolve(process.cwd(), item)))
+      const env = dotenv.parse(fs.readFileSync(resolve(ENV_ROOT, item)))
       envConfig = { ...envConfig, ...env }
     } catch (e) {
       console.error(`Error in parsing ${item}`, e)

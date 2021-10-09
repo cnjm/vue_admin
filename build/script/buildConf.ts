@@ -29,7 +29,7 @@ function createConfig(
     fs.mkdirp(getRootPath(OUTPUT_DIR))
     writeFileSync(getRootPath(`${OUTPUT_DIR}/${configFileName}`), configStr)
 
-    console.log(chalk.cyan(`✨ [${pkg.name}]`) + ` - configuration file is build successfully:`)
+    console.log(chalk.cyan(`✨ [${pkg.name}]`) + chalk.green(` - configuration file is build successfully:`) + '\n')
     console.log(chalk.gray(OUTPUT_DIR + '/' + chalk.green(configFileName)) + '\n')
   } catch (error) {
     console.log(chalk.red('configuration file configuration file failed to package:\n' + error))
